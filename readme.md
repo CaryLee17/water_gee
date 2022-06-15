@@ -28,7 +28,7 @@
 * **模型训练**：
 * **GEE水体预测**：
 <p align="center" style="width:550px">
-<img src="https://github.com/CaryLee17/water_gee/tree/main/images/result.png" style="width:550px"></br>
+<img src="https://github.com/CaryLee17/water_gee/blob/main/images/result.png" style="width:550px"></br>
 图4.水体提取结果
 </p>
 
@@ -51,3 +51,6 @@
 **其他**
 * os
 * time
+
+## 使用方法
+
