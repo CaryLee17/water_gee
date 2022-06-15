@@ -50,7 +50,7 @@ Total params: 38,514
 
 * **GEE水体预测**：`Pixel-based CNN`模型的结构中的`input`、`conv2d`、`concatenate`以及`slice`分别与GEE中的`ee.Image`、`ee.Kernel.convolve`、`ee.Image.cat`以及`ee.Image.select`模块相对应。通过在Python中实现模型的转换函数，可实现将以CNN为基础深度学习架构的模型转换为`GEE`格式。利用该转换函数，实现了权重信息的获取以及云端部署。
 
-<img align='right' src="https://github.com/CaryLee17/water_gee/blob/main/images/result.png" style="width:400px"></br></br>
+<img align='right' src="https://github.com/CaryLee17/water_gee/blob/main/images/result.png" style="width:400px">
   
 ```
 Layer (type)                    Output shape             Connected to               GEE module
