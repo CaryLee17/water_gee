@@ -101,4 +101,6 @@ time
 ```
 
 ## 使用方法
-
+* **`get_images.ipynb`**:用于获取瓦片影像、QA波段生成的水体标签以及噪声纠正后的水体标签；
+* **`train_cnn.ipynb`**:用于训练初始化的`Pixel-based CNN`水体提取模型；
+* **`gee_predict.ipynb`**:用于模型权重获取以及云端权重部署，利用`GEE`的高算力，实现云端深度学习模型运算。水体提取结果存储在`Google Earth Engine`的`Assets`中。
