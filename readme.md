@@ -27,7 +27,10 @@
 
 * **模型训练**：
 * **GEE水体预测**：
-<img src="https://github.com/CaryLee17/water_gee/tree/main/images/results.jpg" style="width:550px">
+<p align="center" style="width:550px">
+<img src="https://github.com/CaryLee17/water_gee/tree/main/images/result.png" style="width:550px"></br>
+图4.水体提取结果
+</p>
 
 ## 依赖的环境
 
