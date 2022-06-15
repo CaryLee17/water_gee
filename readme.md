@@ -25,7 +25,7 @@
 <strong>图3.标签噪声纠正后</strong>
 </p>
 
-* **模型训练**：</br>
+* **模型训练**：构建并初始化Pixel-based CNN模型。利用文件名将之前的到的瓦片影像以及瓦片标签进行对应，裁切中心像元邻域7×7范围内的训练数据并匹配水体标签。为避免水体和非水体训练数据数量相差较大，非水体按一定比例生成，要求水体非水体数据体量相当。图4为Pixel-based CNN模型示意图，其右侧的为具体的模型参数。</br>
 <img align="left" src="https://github.com/CaryLee17/water_gee/blob/main/images/CNN.png" style="width:500px">
 
 ```
