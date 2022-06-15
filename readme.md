@@ -1,6 +1,8 @@
-img{
-border:dashed 5px blue;
-}
+<style>
+  img{
+  border:dashed 5px blue;
+  }
+</style>
 [English](README.md) 中文版
 # water_gee v1.0
 <img src="https://github.com/ni1o1/transbigdata/raw/main/docs/source/_static/logo-wordmark-dark.png" style="width:550px">
