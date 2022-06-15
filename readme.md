@@ -25,7 +25,7 @@
 <strong>图3.标签噪声纠正后</strong>
 </p>
 
-* **模型训练**：构建并初始化`Pixel-based CNN`模型。利用文件名将之前的到的瓦片影像以及瓦片标签进行对应，裁切中心像元邻域7×7范围内的训练数据并匹配水体标签。为避免水体和非水体训练数据数量相差较大，非水体按一定比例生成，要求水体非水体数据体量相当。图4为Pixel-based CNN模型示意图，其右侧的为具体的模型参数。</br>
+* **模型训练**：构建并初始化`Pixel-based CNN`模型。利用文件名将之前的到的瓦片影像以及瓦片标签进行对应，裁切中心像元邻域7×7范围内的训练数据并匹配水体标签。为避免水体和非水体训练数据数量相差较大，非水体按一定比例生成，要求水体非水体数据体量相当。图4为`Pixel-based CNN`模型示意图，其右侧的为具体的模型参数。</br>
 <img align="left" src="https://github.com/CaryLee17/water_gee/blob/main/images/CNN.png" style="width:400px">
 
 ```
@@ -48,7 +48,7 @@ Total params: 38,514
 
 
 
-* **GEE水体预测**：`Pixel-based CNN`模型的结构中的`input`、`conv2d`、`concatenate`以及`slice`分别与GEE中的`ee.Image`、`ee.Kernel.convolve`、`ee.Image.cat`以及`ee.Image.select`模块相对应。通过在Python中实现模型的转换函数，可实现将以CNN为基础深度学习架构的模型转换为GEE格式。利用该转换函数，实现了权重信息的获取以及云端部署。
+* **GEE水体预测**：`Pixel-based CNN`模型的结构中的`input`、`conv2d`、`concatenate`以及`slice`分别与GEE中的`ee.Image`、`ee.Kernel.convolve`、`ee.Image.cat`以及`ee.Image.select`模块相对应。通过在Python中实现模型的转换函数，可实现将以CNN为基础深度学习架构的模型转换为`GEE`格式。利用该转换函数，实现了权重信息的获取以及云端部署。
 
 <img align='right' src="https://github.com/CaryLee17/water_gee/blob/main/images/result.png" style="width:400px"></br></br>
   
