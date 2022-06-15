@@ -16,7 +16,7 @@
 
 * **水体标签噪声纠正**：
 <img src="https://github.com/CaryLee17/water_gee/blob/main/images/mask.png" style="width:550px">
-<center>图1.标签噪声纠正前</center>
+<p align="center" style="width:550px">图1.标签噪声纠正前</p>
 <img src="https://github.com/CaryLee17/water_gee/blob/main/images/label.png" style="width:550px">
 图2.标签噪声纠正后
 
