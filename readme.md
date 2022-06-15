@@ -12,17 +12,22 @@
 ## 主要功能
 
 * **瓦片影像获取**：
-<img src="https://github.com/CaryLee17/water_gee/blob/main/images/tile_images.png" style="width:550px">
+<p align="center" style="width:550px">
+<img src="https://github.com/CaryLee17/water_gee/blob/main/images/tile_images.png" style="width:550px"></br>
+图1.瓦片影像目录
+</p>
 
 * **水体标签噪声纠正**：
-<img src="https://github.com/CaryLee17/water_gee/blob/main/images/mask.png" style="width:550px">
-<p align="center" style="width:550px">图1.标签噪声纠正前</p>
-<img src="https://github.com/CaryLee17/water_gee/blob/main/images/label.png" style="width:550px">
-<p align="center" style="width:550px">图2.标签噪声纠正后</p>
+<p align="center" style="width:550px">
+<img src="https://github.com/CaryLee17/water_gee/blob/main/images/mask.png" alt style="width:550px"></br>
+图2.标签噪声纠正前</br>
+<img src="https://github.com/CaryLee17/water_gee/blob/main/images/label.png" style="width:550px"></br>
+图3.标签噪声纠正后
+</p>
 
 * **模型训练**：
 * **GEE水体预测**：
-<img src="" style="width:550px">
+<img src="https://github.com/CaryLee17/water_gee/tree/main/images/results.jpg" style="width:550px">
 
 ## 依赖的环境
 
