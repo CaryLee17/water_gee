@@ -1,11 +1,6 @@
-<style>
-  img{
-  border:dashed 5px blue;
-  }
-</style>
 [English](README.md) 中文版
 # water_gee v1.0
-<img src="https://github.com/ni1o1/transbigdata/raw/main/docs/source/_static/logo-wordmark-dark.png" style="width:550px">
+<img src="" style="width:550px">
 
 `Water_gee`存储库存储了基于Python端实现的深度学习结合GEE实现的水体提取方法。`Water_gee`可实现的功能主要有瓦片影像、水体标签获取、水体标签噪声纠正、模型训练以及GEE水体预测等。`Water_gee`
 
@@ -27,7 +22,7 @@
 
 * **模型训练**：
 * **GEE水体预测**：
-<img src="https://github.com/ni1o1/transbigdata/raw/main/docs/source/_static/logo-wordmark-dark.png" style="width:550px">
+<img src="" style="width:550px">
 
 ## 依赖的环境
 
