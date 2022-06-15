@@ -11,17 +11,17 @@
 
 ## 主要功能
 
-* **瓦片影像获取**：
-<p align="center" style="width:550px">
-<img src="https://github.com/CaryLee17/water_gee/blob/main/images/tile_images.png" style="width:550px"></br>
+* **瓦片影像获取**：GEE平台只支持最大512×512像元尺度的瓦片图像下载。通过遍历研究区样带影像，逐影像建立0.135°×0.135°瓦片矢量，对影像数据进行裁切，从而获取小瓦片影像存储在本地。
+<p align="center" style="width:1000px">
+<img src="https://github.com/CaryLee17/water_gee/blob/main/images/tile_images.png" style="width:1000px"></br>
 图1.瓦片影像目录
 </p>
 
-* **水体标签噪声纠正**：
-<p align="center" style="width:550px">
-<img src="https://github.com/CaryLee17/water_gee/blob/main/images/mask.png" alt style="width:550px"></br>
+* **水体标签噪声纠正**：用上述方法获得遥感影像质量评估波段中的水体信息，并存储在本地。在地物光谱呈正态分布的假设下，构建Pixel-based CNN水体提取模型，实现水体的标签自学习以及噪声纠正。
+<p align="center" style="width:1000px">
+<img src="https://github.com/CaryLee17/water_gee/blob/main/images/mask.png" alt style="width:1000px"></br>
 图2.标签噪声纠正前</br>
-<img src="https://github.com/CaryLee17/water_gee/blob/main/images/label.png" style="width:550px"></br>
+<img src="https://github.com/CaryLee17/water_gee/blob/main/images/label.png" style="width:1000px"></br>
 图3.标签噪声纠正后
 </p>
 
@@ -35,22 +35,30 @@
 ## 依赖的环境
 
 **与GEE实现数据交互**
-* ee
-* geemap
+```
+ee
+geemap
+```
 
 **影像数据处理**
-* pandas
-* numpy
-* keras
-* osgeo
+```
+pandas
+numpy
+keras
+osgeo
+```
 
 **多线程操作**
-* threading
-* concurrent
+```
+threading
+concurrent
+```
 
 **其他**
-* os
-* time
+```
+os
+time
+```
 
 ## 使用方法
 
