@@ -46,11 +46,29 @@ Total params: 38,514
 ```
 <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<strong>图4.Pixel-based CNN模型架构示意图</strong>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<strong>模型参数</strong></p>
 
-* **GEE水体预测**：
-<p align="center" style="width:550px">
-<img src="https://github.com/CaryLee17/water_gee/blob/main/images/result.png" style="width:550px"></br>
-<strong>图4.水体提取结果</strong>
-</p>
+<img align='right' src="https://github.com/CaryLee17/water_gee/blob/main/images/result.png" style="width:500px">
+
+* **GEE水体预测**：Pixel-based CNN模型的结构中的input、conv2d、concatenate以及slice分别与GEE中的ee.Image、ee.Kernel.convolve、ee.Image.cat以及ee.Image.select模块相对应。通过在Python中实现模型的转换函数，可实现将以CNN为基础深度学习架构的模型转换为GEE格式。利用该转换函数，实现了权重信息的获取以及云端部署。
+</br>
+</br>
+
+```
+Layer (type)	Connected to	GEE module
+input_1 (InputLayer)		ee.Image
+conv2d (Conv2D)	input_1[0][0]	ee.Kernel.convolve
+conv2d_1 (Conv2D)	conv2d[0][0]	ee.Kernel.convolve
+tf_op_layer_strided_slice	input_1[0][0]	ee.Image.select
+concatenate (Concatenate)	conv2d_1[0][0]	ee.Image.cat
+	tf_op_layer_strided_slice[0][0]	
+conv2d_2 (Conv2D)	concatenate[0][0]	ee.Kernel.convolve
+tf_op_layer_strided_slice_1	input_1[0][0]	ee.Image.select
+concatenate_1 (Concatenate)	conv2d_2[0][0]	ee.Image.cat
+	tf_op_layer_strided_slice_1[0][0]	
+conv2d_3 (Conv2D)	concatenate_1[0][0]	ee.Kernel.convolve
+conv2d_4 (Conv2D)	conv2d_3[0][0]	ee.Kernel.convolve
+```
+<p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<strong>转换参数</strong>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<strong>图5.水体提取结果</strong></p>
+
 
 ## 依赖的环境
 
