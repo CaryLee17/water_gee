@@ -12,13 +12,13 @@
 ## 主要功能
 
 * **瓦片影像获取**：`GEE`平台只支持最大512×512像元尺度的瓦片图像下载。通过遍历研究区样带影像，逐影像建立0.135°×0.135°瓦片矢量，对影像数据进行裁切，从而获取小瓦片影像存储在本地。图1展示了部分瓦片影像目录。
-<p align="center" style="width:100%">
+<p align="center">
 <img src="https://github.com/CaryLee17/water_gee/blob/main/images/tile_images.png" style="width:100%"></br>
 <strong>图1.瓦片影像目录</strong>
 </p>
 
 * **水体标签噪声纠正**：用上述方法获得遥感影像质量评估波段中的水体信息，并存储在本地。在地物光谱呈正态分布的假设下，构建`Pixel-based CNN`水体提取模型，实现水体的标签自学习以及噪声纠正。图2、图3分别为水体标签噪声纠正前后的水体标签信息。
-<p align="center" style="width:100%">
+<p align="center">
 <img src="https://github.com/CaryLee17/water_gee/blob/main/images/mask.png" style="width:100%"></br>
 <strong>图2.标签噪声纠正前</strong></br>
 <img src="https://github.com/CaryLee17/water_gee/blob/main/images/label.png" style="width:100%"></br>
@@ -26,7 +26,7 @@
 </p>
 
 * **模型训练**：构建并初始化`Pixel-based CNN`模型。利用文件名将之前的到的瓦片影像以及瓦片标签进行对应，裁切中心像元邻域7×7范围内的训练数据并匹配水体标签。为避免水体和非水体训练数据数量相差较大，非水体按一定比例生成，要求水体非水体数据体量相当。图4为Pixel-based CNN模型示意图，其右侧的为具体的模型参数。</br>
-<img align="left" src="https://github.com/CaryLee17/water_gee/blob/main/images/CNN.png" style="width:50%">
+<img align="left" src="https://github.com/CaryLee17/water_gee/blob/main/images/CNN.png" style="width:400px">
 
 ```
 Layer (type)                    Output Shape         Param 
@@ -46,7 +46,7 @@ Total params: 38,514
 ```
 <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<strong>图4.Pixel-based CNN模型架构示意图</strong>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<strong>模型参数</strong></p>
 
-<img align='right' src="https://github.com/CaryLee17/water_gee/blob/main/images/result.png" style="width:50%">
+<img align='right' src="https://github.com/CaryLee17/water_gee/blob/main/images/result.png" style="width:400px">
 
 * **GEE水体预测**：`Pixel-based CNN`模型的结构中的`input`、`conv2d`、`concatenate`以及`slice`分别与GEE中的`ee.Image`、`ee.Kernel.convolve`、`ee.Image.cat`以及`ee.Image.select`模块相对应。通过在Python中实现模型的转换函数，可实现将以CNN为基础深度学习架构的模型转换为GEE格式。利用该转换函数，实现了权重信息的获取以及云端部署。
 
