@@ -13,10 +13,9 @@
 
 * **瓦片影像获取**：
 <img src="https://github.com/ni1o1/transbigdata/raw/main/docs/source/_static/logo-wordmark-dark.png" style="width:550px">
-
 * **水体标签噪声纠正**：
-<img src="https://github.com/ni1o1/transbigdata/raw/main/docs/source/_static/logo-wordmark-dark.png" style="width:550px">
-
+<img src="https://github.com/CaryLee17/water_gee/blob/main/images/mask.png" style="width:550px">
+<img src="https://github.com/CaryLee17/water_gee/blob/main/images/label.png" style="width:550px">
 * **模型训练**：
 * **GEE水体预测**：
 <img src="https://github.com/ni1o1/transbigdata/raw/main/docs/source/_static/logo-wordmark-dark.png" style="width:550px">
