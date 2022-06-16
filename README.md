@@ -141,3 +141,6 @@ time
         |---write_grid_image
         |---cloud_free        
 ```
+```
+water_gee v1.0为初始版本，可能会有疏漏，后期会持续完善。
+```
