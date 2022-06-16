@@ -102,6 +102,7 @@ time
 ```
 
 ## Usage
+The code of the `ipynb` version mainly consists of `get_images.ipynb`, `train_cnn.ipynb` and `gee_predict.ipynb` three files. The composition structure of each file is shown below. Necessary comments are made in the file for the places that need to be modified, and other parts can also be customized by users.
 * **`get_images.ipynb`**: for acquiring tile images, QA band generated water body labels, and noise corrected water body labels.
 ```
 |---get_images.ipynb
