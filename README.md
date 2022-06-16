@@ -127,15 +127,11 @@ time
 * **`gee_predict.ipynb`**：用于模型权重获取以及云端权重部署，利用`GEE`的高算力，实现云端深度学习模型运算。水体提取结果存储在`Google Earth Engine`的`Assets`中。
 ```
 |---gee_predict.ipynb
-    |---summer_img
-    |---generate_grid
-    |---project
-        |---predict
-        |---get_array_from_image
-        |---write_tiff
-        |---CNN
-        |---write_grid_image
-        |---cloud_free        
+    |---cloud_free
+    |---summer_img_bounds
+    |---features
+    |---pixel_based_CNN
+    |---relu       
 ```
 ```
 water_gee v1.0为初始ipynb版本，可能会有疏漏，后期会持续完善（封装成Python包）。
