@@ -134,6 +134,6 @@ The code of the `ipynb` version mainly consists of `get_images.ipynb`, `train_cn
     |---pixel_based_CNN
     |---relu       
 ```
-
-# water_gee v1.0 is the initial ipynb version, there may be omissions, later will continue to improve (encapsulated into a Python package).
+***
+# Water_gee v1.0 is the initial ipynb version, there may be omissions, later will continue to improve (encapsulated into a Python package).
 
