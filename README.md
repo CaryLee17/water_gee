@@ -118,15 +118,11 @@ time
 * **`train_cnn.ipynb`**：用于训练初始化的`Pixel-based CNN`水体提取模型；
 ```
 |---train_cnn.ipynb
-    |---summer_img
-    |---generate_grid
-    |---project
-        |---predict
-        |---get_array_from_image
-        |---write_tiff
-        |---CNN
-        |---write_grid_image
-        |---cloud_free        
+    |---read_tiff
+    |---features
+    |---get_input
+    |---CNN
+    |---generate_inputs        
 ```
 * **`gee_predict.ipynb`**：用于模型权重获取以及云端权重部署，利用`GEE`的高算力，实现云端深度学习模型运算。水体提取结果存储在`Google Earth Engine`的`Assets`中。
 ```
