@@ -1,4 +1,4 @@
-[English](README.md) 中文版
+English [中文版](README_zh.md) 
 # water_gee v1.0
 <img src="https://github.com/CaryLee17/water_gee/blob/main/images/figure.png" style="width:1000px">
 
