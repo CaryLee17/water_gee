@@ -11,7 +11,7 @@ English [中文版](README_zh.md)
 
 ## Main Functions
 
-* **Tile image acquisition**: The `GEE` platform only supports the download of tile images at a maximum of 512 × 512 pixel scale. By traversing the sample strip images in the study area, a 0.135°×0.135° tile vector is created image by image, and the image data is cropped to obtain small tile images for local storage. Figure 1 shows a partial tile image catalog.
+* **Tile image acquisition**: The `GEE` platform only supports the download of tile images at a maximum of 512 × 512 pixel scale. By traversing the sample strip images in the study area, 0.135°×0.135° tile vectors are created image by image, and the image data is cropped to obtain small tile images for local storage. Figure 1 shows a partial tile image catalog.
 <p align="center">
 <img src="https://github.com/CaryLee17/water_gee/blob/main/images/tile_images.png" style="width:100%"></br>
 <strong>Figure 1. Tile image catalog</strong>
