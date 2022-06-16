@@ -102,6 +102,7 @@ time
 ```
 
 ## 使用方法
+`ipynb`版本的代码主要由`get_images.ipynb`、`train_cnn.ipynb`以及`gee_predict.ipynb`三个文件组成。各个文件的组成架构如下所示。在文件中针对需要修改的地方做出了必要的注释，其他部分用户也可以自定义。
 * **`get_images.ipynb`**：用于获取瓦片影像、QA波段生成的水体标签以及噪声纠正后的水体标签；
 ```
 |---get_images.ipynb
