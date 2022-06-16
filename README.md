@@ -2,30 +2,30 @@ English [中文版](README_zh.md)
 # water_gee v1.0
 <img src="https://github.com/CaryLee17/water_gee/blob/main/images/figure.png" style="width:1000px">
 
-`Water_gee`存储库存储了基于Python端实现的深度学习结合`GEE`实现的水体提取方法。`Water_gee`可实现的功能主要有瓦片影像、水体标签获取、水体标签噪声纠正、模型训练以及GEE水体预测等。`Water_gee`
+`Water_gee` repository stores a water extraction methods based on deep learning methods and `GEE` with Python language. The functions that can be achieved by `Water_gee` are mainly tile images acquisition, water body label acquisition, water body label noise correction, model training, and water body prediction using `GEE`. `Water_gee`
 
-## 主要解决问题
+## Main Purpose
 
-* **解决大区域自动化水体提取问题**
-* **解决深度学习的在线部署问题**
+* **Solving the problem of automated water extraction in large areas**
+* **Solving deep learning deployment problems on GEE platforms**
 
-## 主要功能
+## Main Functions
 
-* **瓦片影像获取**：`GEE`平台只支持最大512×512像元尺度的瓦片图像下载。通过遍历研究区样带影像，逐影像建立0.135°×0.135°瓦片矢量，对影像数据进行裁切，从而获取小瓦片影像存储在本地。图1展示了部分瓦片影像目录。
+* **Tile image acquisition**: The `GEE` platform only supports the download of tile images at a maximum of 512 × 512 pixel scale. By traversing the sample strip images in the study area, a 0.135°×0.135° tile vector is created image by image, and the image data is cropped to obtain small tile images for local storage. Figure 1 shows a partial tile image catalog.
 <p align="center">
 <img src="https://github.com/CaryLee17/water_gee/blob/main/images/tile_images.png" style="width:100%"></br>
-<strong>图1.瓦片影像目录</strong>
+<strong>Figure 1. Tile image catalog</strong>
 </p>
 
-* **水体标签噪声纠正**：用上述方法获得遥感影像质量评估波段中的水体信息，并存储在本地。在地物光谱呈正态分布的假设下，构建`Pixel-based CNN`水体提取模型，实现水体的标签自学习以及噪声纠正。图2、图3分别为水体标签噪声纠正前后的水体标签信息。
+* **Water label noise correction**：The information of water bodies in the quality assessment bands of remote sensing images is obtained by the above method and stored locally. Under the assumption that the feature spectra are normally distributed, a `Pixel-based CNN` water body extraction model is constructed to realize the label self-learning as well as noise correction of water bodies. Figure 2 and Figure 3 show the water body label information before and after the water body label noise correction, respectively.
 <p align="center">
 <img src="https://github.com/CaryLee17/water_gee/blob/main/images/mask.png" style="width:100%"></br>
-<strong>图2.标签噪声纠正前</strong></br>
+<strong>Figure 2. Before label noise correction</strong></br>
 <img src="https://github.com/CaryLee17/water_gee/blob/main/images/label.png" style="width:100%"></br>
-<strong>图3.标签噪声纠正后</strong>
+<strong>Figure 3. After label noise correction</strong>
 </p>
 
-* **模型训练**：构建并初始化`Pixel-based CNN`模型。利用文件名将之前的到的瓦片影像以及瓦片标签进行对应，裁切中心像元邻域7×7范围内的训练数据并匹配水体标签。为避免水体和非水体训练数据数量相差较大，非水体按一定比例生成，要求水体非水体数据体量相当。图4为`Pixel-based CNN`模型示意图，其右侧的为具体的模型参数。</br>
+* **Model Training**：Construct and initialize the `Pixel-based CNN` model. The previously obtained tile images as well as the tile labels are corresponded using the file names, cropping the training data in the 7×7 range of the central image element neighborhood and matching the water body labels. In order to avoid the large difference between the number of water body and non-water body training data, the non-water body is generated in a certain proportion, and the volume of water body non-water body data is required to be comparable. Figure 4 shows the schematic diagram of the `Pixel-based CNN` model, and the right-hand side of it shows the specific model parameters.</br>
 <img align="left" src="https://github.com/CaryLee17/water_gee/blob/main/images/CNN.png" style="width:400px">
 
 ```
@@ -44,11 +44,11 @@ conv2d_4 (Conv2D)               (None, 1, 1, 2)      258
 ===========================================================
 Total params: 38,514
 ```
-<p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<strong>图4.Pixel-based CNN模型架构示意图</strong>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<strong>模型参数</strong></p>
+<p><strong>Figure 4. Schematic diagram of Pixel-based CNN model </strong>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<strong>Model Parameters</strong></p>
 
 
 
-* **GEE水体预测**：`Pixel-based CNN`模型的结构中的`input`、`conv2d`、`concatenate`以及`slice`分别与GEE中的`ee.Image`、`ee.Kernel.convolve`、`ee.Image.cat`以及`ee.Image.select`模块相对应。通过在Python中实现模型的转换函数，可实现将以CNN为基础深度学习架构的模型转换为`GEE`格式。利用该转换函数，实现了权重信息的获取以及云端部署。
+* **GEE water body Projection**：The `input`, `conv2d`, `concatenate`, and `slice` in the structure of the `Pixel-based CNN` model correspond to the `ee.Image`, `ee.Kernel.convolve`, `ee.Image.cat`, and `ee.Image. select` modules in GEE. The implementation of the model conversion function in Python enables the conversion of models with CNN-based deep learning architectures to `GEE` format. Using this conversion function, the acquisition of weight information and the cloud deployment are achieved.
 
 <img align='right' src="https://github.com/CaryLee17/water_gee/blob/main/images/result.png" style="width:400px">
   
@@ -70,18 +70,18 @@ conv2d_4 (Conv2D)              (None, 1, 1, 2)   conv2d_3[0][0]                 
 =======================================================================================================
 ```
 </br></br>
-<p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<strong>转换参数</strong>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<strong>图5.水体提取结果</strong></p>
+<p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<strong>Conversion parameters</strong>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<strong>Figure 5. Water body extraction results</strong></p>
 
 
-## 依赖的环境
+## Dependent Environment
 
-**与GEE实现数据交互**
+**Data interaction with GEE**
 ```
 ee
 geemap
 ```
 
-**影像数据处理**
+**Image Data Processing**
 ```
 pandas
 numpy
@@ -89,20 +89,20 @@ keras
 osgeo
 ```
 
-**多线程操作**
+**Multi-threaded operation**
 ```
 threading
 concurrent
 ```
 
-**其他**
+**Others**
 ```
 os
 time
 ```
 
-## 使用方法
-* **`get_images.ipynb`**：用于获取瓦片影像、QA波段生成的水体标签以及噪声纠正后的水体标签；
+## Usage
+* **`get_images.ipynb`**: for acquiring tile images, QA band generated water body labels, and noise corrected water body labels.
 ```
 |---get_images.ipynb
     |---summer_img
@@ -115,7 +115,7 @@ time
         |---write_grid_image
         |---cloud_free        
 ```
-* **`train_cnn.ipynb`**：用于训练初始化的`Pixel-based CNN`水体提取模型；
+* **`train_cnn.ipynb`**: Initialize and train the `Pixel-based CNN` water body extraction model using the acquired sample strip images and labeled dataset.
 ```
 |---train_cnn.ipynb
     |---read_tiff
@@ -124,7 +124,7 @@ time
     |---CNN
     |---generate_inputs        
 ```
-* **`gee_predict.ipynb`**：用于模型权重获取以及云端权重部署，利用`GEE`的高算力，实现云端深度学习模型运算。水体提取结果存储在`Google Earth Engine`的`Assets`中。
+* **`gee_predict.ipynb`**：It is used for model weight acquisition and cloud weight deployment, and the high computing power of `GEE` is used to realize the deep learning model computing in the cloud. The water body extraction results are stored in `Assets` of `Google Earth Engine`.
 ```
 |---gee_predict.ipynb
     |---cloud_free
@@ -134,5 +134,5 @@ time
     |---relu       
 ```
 ```
-water_gee v1.0为初始ipynb版本，可能会有疏漏，后期会持续完善（封装成Python包）。
+water_gee v1.0 is the initial ipynb version, there may be omissions, later will continue to improve (encapsulated into a Python package).
 ```
