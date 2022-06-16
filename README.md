@@ -1,5 +1,5 @@
 English [中文版](README_zh.md) 
-# water_gee v1.0
+# Water_gee v1.0
 <img src="https://github.com/CaryLee17/water_gee/blob/main/images/figure.png" style="width:1000px">
 
 `Water_gee` repository stores a water extraction methods based on deep learning methods and `GEE` with Python language. The functions that can be achieved by `Water_gee` are mainly tile images acquisition, water body label acquisition, water body label noise correction, model training, and water body prediction using `GEE`. `Water_gee`
